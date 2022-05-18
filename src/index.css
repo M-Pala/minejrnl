@@ -1,13 +1,38 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+body{
+  --tw-bg-opacity: 1;
+  background-image: linear-gradient(to bottom right,rgb(71 85 105 / var(--tw-bg-opacity)),rgb(19 78 74 / var(--tw-bg-opacity)));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* .bg-login{
+  background: */
+        /* top, transparent black, faked with gradient */ 
+        /* linear-gradient(
+          rgba(14, 47, 21, 0.6), 
+          rgba(7, 35, 14, 0.6)
+        ), */
+        /* bottom, image */
+        /* url(./images/login_bg.jpg);;
+  background-size: cover;
+  
+} */
+
+.bg-login{
+  background-image: linear-gradient(to right, rgba(33, 86, 23, 0.703), rgba(0, 255, 187, 0.511));
+  
 }
