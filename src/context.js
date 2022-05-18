@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth, signInWith
 import { addDoc, collection, query, getDoc, getDocs, where, doc, Timestamp, updateDoc, arrayUnion } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import { getUserInfo } from "./utils/getUserInfo";
+import { Navigate } from "react-router-dom";
 
 const AppContext = createContext()
 
@@ -79,8 +80,8 @@ const AppProvider = ({children}) => {
         signOut(auth).then(()=>{
             localStorage.removeItem('userInfo')
             console.log('logout successfull')
-            window.location = "/login"
-            return true
+            
+            return <Navigate to='/logout'/>
         }).catch((e)=>{
             console.log(e);
             return false
