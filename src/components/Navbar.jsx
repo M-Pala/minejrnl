@@ -24,7 +24,7 @@ const Navbar = () => {
                 {user_info && <Link to={`/`} onClick={()=>setMenuState(false)} className='py-5 px-3 transition-all ease-in-out hover:bg-green-500 hover:text-white'><li >Home</li></Link>}
                 {user_info && <Link to={`/createPlace`} onClick={()=>setMenuState(false)} className='py-5 px-3 transition-all ease-in-out hover:bg-green-500 hover:text-white'><li>Create</li></Link>}
                 {user_info && <Link to={`/profile/${user_info?.user_id}`} onClick={()=>setMenuState(false)} className='py-5 px-3 transition-all ease-in-out hover:bg-green-500 hover:text-white'><li>Profile</li></Link>}
-                {user_info && <li onClick={logout} className='py-5 px-3 transition-all ease-in-out hover:cursor-pointer bg-red-100 text-red-500 hover:bg-red-500 hover:text-white'>Logout</li>}
+                {user_info && <Link to={`/login`} onClick={logout}><li onClick={logout} className='py-5 px-3 transition-all ease-in-out hover:cursor-pointer bg-red-100 text-red-500 hover:bg-red-500 hover:text-white'>Logout</li></Link> }
             </ul>}
             <div className='md:hidden '>
                 {user_info &&<button onClick={()=>setMenuState(!menuState)}> {menuState?<AiOutlineMenuFold className='text-3xl'/> : <AiOutlineMenu  className='text-3xl'/>} </button>}
@@ -32,7 +32,7 @@ const Navbar = () => {
                     {user_info && <Link to={`/`} onClick={()=>setMenuState(false)}><li className='mx-2 py-4 text-lg  text-center' >Home</li></Link>}
                     {user_info && <Link to={`/createPlace`} onClick={()=>setMenuState(false)}><li className='mx-2 py-4 text-lg  text-center'>Create</li></Link>}
                     {user_info && <Link to={`/profile/${user_info?.user_id}`} onClick={()=>setMenuState(false)}><li className='mx-2  py-4 text-lg  text-center'>Profile</li></Link>}
-                    {user_info && <li className='mx-2  py-4 text-lg  text-center' onClick={logout}>Logout</li>}
+                    {user_info && <Link to={`/login`} onClick={logout}><li className='mx-2  py-4 text-lg  text-center'>Logout</li></Link> }
                 </ul>}
             </div>
             

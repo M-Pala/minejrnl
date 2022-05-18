@@ -49,7 +49,7 @@ const Profile = () => {
           <h2 className='mx-5 md:text-2xl text-xl'>email : {profileEmail}</h2>
          {(JSON.parse(localStorage.getItem('userInfo')).user_id === id) && <>
           <div className='my-5 flex justify-center'>
-            <button className='md:hidden w-[90%] bg-gradient-to-br from-red-400 to to-red-500 text-red-900 font-bold shadow-md py-2 rounded-md flex justify-center items-center' onClick={()=>logout()}>Log out</button>
+          <Link to={`/login`} onClick={logout}><button className='md:hidden w-[90%] bg-gradient-to-br from-red-400 to to-red-500 text-red-900 font-bold shadow-md py-2 rounded-md flex justify-center items-center' onClick={()=>logout()}>Log out</button></Link>
           </div>
          </>
          }
