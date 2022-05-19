@@ -198,7 +198,7 @@ const AppProvider = ({children}) => {
                         places_uploaded: arrayUnion(`placesInfo/${placeesDocRef.id}`)
                       });
                     
-                      window.location = `/profile/${current_user_id}`
+                      window.location.hash = `/profile/${current_user_id}`
                 })
                 console.log('Uploaded all data')
                 
