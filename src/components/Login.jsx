@@ -23,7 +23,7 @@ const Login = () => {
         {/* page container */}
 
             <div className=" h-screen flex flex-row flex-wrap items-center justify-evenly">
-                <div className='md:w-[45%] w-[90%] p-6 flex flex-col items-center gap-8 md:h-[50%]'>
+                <div className='md:w-[45%] w-[90%] p-6 flex flex-col items-start gap-8 md:h-[50%]'>
                     <h1 className='text-white text-[3.5rem] leading-none font-bold md:text-6xl  md:font-extrabold md:leading-[4rem]'>Save your minecraft location from anywhere with <span className='text-green-400'> mineJrnl</span></h1>
                     <h1 className='text-white text-2xl font-semibold md:text-3xl md:font-bold'>Sign up now to log your journey</h1>
                 </div>
