@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,6 +19,7 @@ body{
   background-image: linear-gradient(to bottom right,rgb(71 85 105 / var(--tw-bg-opacity)),rgb(19 78 74 / var(--tw-bg-opacity)));
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-family: 'Mukta', sans-serif;
 }
 
 /* .bg-login{
