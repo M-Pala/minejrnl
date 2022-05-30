@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/minejrnl/static/css/main.1ddfc509.css",
-    "main.js": "/minejrnl/static/js/main.9ea9b7dc.js",
-    "static/media/places_img.jpg": "/minejrnl/static/media/places_img.96eeb5ca18270d549d13.jpg",
-    "static/media/minecraftLogo.png": "/minejrnl/static/media/minecraftLogo.952b95e4d20bd753a61e.png",
+    "main.css": "/minejrnl/static/css/main.7517c83f.css",
+    "main.js": "/minejrnl/static/js/main.a06ba9dc.js",
     "index.html": "/minejrnl/index.html",
-    "main.1ddfc509.css.map": "/minejrnl/static/css/main.1ddfc509.css.map",
-    "main.9ea9b7dc.js.map": "/minejrnl/static/js/main.9ea9b7dc.js.map"
+    "main.7517c83f.css.map": "/minejrnl/static/css/main.7517c83f.css.map",
+    "main.a06ba9dc.js.map": "/minejrnl/static/js/main.a06ba9dc.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ddfc509.css",
-    "static/js/main.9ea9b7dc.js"
+    "static/css/main.7517c83f.css",
+    "static/js/main.a06ba9dc.js"
   ]
 }
