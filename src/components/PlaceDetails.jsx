@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import places_img from '../images/places_img.jpg'
 import { db } from '../utils/firebaseconfig'
 import { doc,getDoc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore'
 import { useGlobalContext } from '../context'
@@ -48,7 +47,7 @@ const PlaceDetails = () => {
             setCoordsZ(docSnap.data().coords.z)
             setSavedBy(docSnap.data().savedBy)
             setHomeCardSavedBy(docSnap.data().savedBy)
-            setHomeCardSaved(docSnap.data().savedBy.includes(user_id))
+            setHomeCardSaved(docSnap.data().savedBy?.includes(user_id))
 
             
           } else {
@@ -59,10 +58,6 @@ const PlaceDetails = () => {
         getPlaceInfo(place_Id)
         
     },[homeCardSaved])
-
-    // useEffect(()=>{
-    // },[homeCardSaved])
-
     
     const handleSave = async (e) =>{
       e.preventDefault()
@@ -127,7 +122,7 @@ const PlaceDetails = () => {
                 <h3><span className='font-semibold'>Saves </span>: {savedBy && savedBy?.length}</h3>
                 <h3  className='my-1'><span className='font-semibold'> Saved by</span> :
                  {savedBy && savedBy?.map((user_id)=>{
-                   return <UserButton user_id={user_id}/>
+                   return <UserButton key={user_id} user_id={user_id}/>
                  })}
 
                  </h3>
@@ -168,7 +163,7 @@ const PlaceDetails = () => {
                       <h3><span className='font-semibold'>Saves </span>: {savedBy && savedBy?.length}</h3>
                       <h3  className='my-1'><span className='font-semibold'> Saved by</span> : 
                         {savedBy && savedBy?.map((user_id)=>{
-                        return <UserButton user_id={user_id}/>
+                        return <UserButton key={user_id} user_id={user_id}/>
                       })}
 
                       </h3>

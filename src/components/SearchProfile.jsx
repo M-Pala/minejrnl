@@ -5,11 +5,12 @@ import { doc, getDoc } from 'firebase/firestore'
 import { useGlobalContext } from '../context'
 import ProfilePlaceCard from './ProfilePlaceCard'
 
-const Profile = () => {
+const SearchProfile = () => {
 
   const {profileName, setProfileName,profileEmail, setProfileEmail, logout,isLoggedIn,docSnapState, setDocSnapState} = useGlobalContext()
   const {id} = useParams()
-
+  
+  
   useEffect(()=>{
     const getAllInfo = async () => {
       const docRef = doc(db, "userInfo", id);
@@ -86,4 +87,4 @@ const Profile = () => {
   }
 }
 
-export default Profile
+export default SearchProfile

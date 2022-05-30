@@ -3,8 +3,8 @@ import fb_config, { auth, db } from './utils/firebaseconfig'
 import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import { addDoc, collection, query, getDoc, getDocs, where, doc, Timestamp, updateDoc, arrayUnion } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
-import { getUserInfo } from "./utils/getUserInfo";
 import { Navigate } from "react-router-dom";
+import Error from "./components/Error";
 
 const AppContext = createContext()
 
@@ -14,18 +14,16 @@ const AppProvider = ({children}) => {
         const auth = getAuth()
         onAuthStateChanged(auth, (user) => {
         if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
+
             const uid = user.uid;
             console.log('user is logged in');
             setIsLoggedIn(true)
             console.log(uid);
-            // ...
+
         } else {
             console.log('user is not logged in')
             setIsLoggedIn(false)
-            // User is signed out
-            // ...
+
         }
         });
     },[])
@@ -39,7 +37,7 @@ const AppProvider = ({children}) => {
     const [loginPass, setLoginPass] = useState()
     const [registerName, setRegisterName] = useState()
     const [signUp, setSignUp] = useState(true)
-
+    const [errorMsg, setErrorMsg] = useState()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const register = async () => {
@@ -58,20 +56,25 @@ const AppProvider = ({children}) => {
             window.location.reload()
 
         } catch (error) {
-            console.log(error)
+            console.log('error', error)
+            setErrorMsg(error)
+            window.location.hash = `/error`
         }
     }
 
     const login = async () => {
         try {
 
-            console.log(loginEmail, loginPass)
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPass)
+            console.log('after catch')
+            window.location.hash = `/tempRedirect/${loginEmail}`
 
         } catch (error) {
-            console.log(error)
+            console.log('error', error)
+            setErrorMsg(error)
+            window.location.hash = `/error`
         }
-        // getUserInfo(loginEmail,'main')
+
 
         
     }
@@ -79,6 +82,11 @@ const AppProvider = ({children}) => {
     const logout =() => {
         signOut(auth).then(()=>{
             localStorage.removeItem('userInfo')
+            setLoginEmail()
+            setLoginPass()
+            setProfileEmail()
+            setProfileName()
+
             console.log('logout successfull')
             
             return <Navigate to='/logout'/>
@@ -94,8 +102,6 @@ const AppProvider = ({children}) => {
 
 
 ////////////////////////////////////////////////////// Temp redirect page setup /////////////////////////////////////////////////////
-    const [id, setId] = useState()
-    const [loading, setLoading] = useState(true)
 
 
 
@@ -109,7 +115,6 @@ const AppProvider = ({children}) => {
 
     const [profileName, setProfileName] = useState()
     const [profileEmail, setProfileEmail] = useState()
-    const [profilePass, setProfilePass] = useState()
 
     const [docSnapState, setDocSnapState] = useState()
 
@@ -214,7 +219,7 @@ const AppProvider = ({children}) => {
 /////////////////////////////////////////////////////// Create page setup ////////////////////////////////////////////////////////////
 
 
-    return <AppContext.Provider value={{signUp, setSignUp,registerEmail, setRegisterEmail,registerPass, setRegisterPass,loginEmail, setLoginEmail,loginPass, setLoginPass,registerName, setRegisterName,register,login,logout,profileName, setProfileName,profileEmail, setProfileEmail,profilePass, setProfilePass,isLoggedIn, setIsLoggedIn,createCordX, setCreateCordX, createCordY, setCreateCordY,createCordZ, setCreateCordZ, createDesc, setCreateDesc, createServerLoc, setCreateServerLoc, createImg, setCreateImg, createUploadProgress, setCreateUploadProgress, uploadPlaceDetails, id, setId, loading,setLoading,docSnapState, setDocSnapState,lastVisible, setLastVisible, homeDocSnap, setHomeDocSnap,menuState, setMenuState}}>
+    return <AppContext.Provider value={{signUp, setSignUp,registerEmail, setRegisterEmail,registerPass, setRegisterPass,loginEmail, setLoginEmail,loginPass, setLoginPass,registerName, setRegisterName,register,login,logout,profileName, setProfileName,profileEmail, setProfileEmail,isLoggedIn, setIsLoggedIn,createCordX, setCreateCordX, createCordY, setCreateCordY,createCordZ, setCreateCordZ, createDesc, setCreateDesc, createServerLoc, setCreateServerLoc, createImg, setCreateImg, createUploadProgress, setCreateUploadProgress, uploadPlaceDetails,docSnapState, setDocSnapState,lastVisible, setLastVisible, homeDocSnap, setHomeDocSnap,menuState, setMenuState, errorMsg}}>
         {children}
     </AppContext.Provider>
 }

@@ -4,10 +4,6 @@ import { addDoc, collection, query, getDoc, getDocs, where, orderBy, limit, star
 import {db} from '../utils/firebaseconfig'
 import {Link} from 'react-router-dom'
 import {BiPlusCircle} from 'react-icons/bi'
-
-// import { async } from '@firebase/util';
-
-import ProfilePlaceCard from './ProfilePlaceCard'
 import Login from './Login';
 import HomePlaceCard from './HomePlaceCard';
 
@@ -32,7 +28,7 @@ const Home = () => {
       // console.log("last", lastVisibleDoc);
 
       setLastVisible(lastVisibleDoc)
-      console.log(lastVisibleDoc)
+      // console.log(lastVisibleDoc)
   
     }
 
@@ -52,14 +48,12 @@ const Home = () => {
     const lastVisibleDoc = documentSnapshots.docs[documentSnapshots.docs.length-1];
     setLastVisible(lastVisibleDoc)
 
-    console.log(documentSnapshots.docs)
     setHomeDocSnap(homeDocSnap.concat(documentSnapshots.docs))
 
   }
 
 
   if(!isLoggedIn){
-    // return <h1 className='mt-10 ml-2 '>Please <Link to={`/login`} className='text-blue-700 underline'>Log in</Link> </h1>
     return <Login/>
   }
   else{
@@ -74,7 +68,7 @@ const Home = () => {
           return (
             <Link className='flex justify-center' key={place.id} to={`/placeDetail/${place.id}`}>
 
-              <HomePlaceCard place_id = {place.id} user_id = {JSON.parse(localStorage.getItem('userInfo')).user_id}/>
+              <HomePlaceCard key={place.id} place_id = {place.id} user_id = {JSON.parse(localStorage.getItem('userInfo'))?.user_id}/>
             </Link>
           )})
           }

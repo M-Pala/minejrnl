@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context'
-import minecraftLogo from '../images/minecraftLogo.png'
 import {AiOutlineMenu, AiOutlineMenuFold} from 'react-icons/ai'
 import mineJrnl from '../images/mineJrnl.png'
 

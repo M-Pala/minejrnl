@@ -1,45 +1,51 @@
-import { async } from '@firebase/util'
-import { collection, query, getDoc, where, getDocs } from "firebase/firestore";
+import { collection, query, getDoc, where, getDocs, doc } from "firebase/firestore";
 import { db } from "../utils/firebaseconfig";
 import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams, Navigate } from 'react-router-dom'
-import { getUserInfo } from '../utils/getUserInfo'
-import { useGlobalContext } from '../context';
 
 const TempRedirect = () => {
 
-    const { id, setId, loading,setLoading} = useGlobalContext()
+    const [id, setId] = useState()
+    const [loading, setLoading] = useState(true)
+
     const {mail} = useParams()
-    // console.log(mail);
 
 
     useEffect(()=>{
-        const getUserInfo = async (loginEmail,type) => {
-            const userInfoQuery = query(collection(db,'userInfo'), where('user_email','==',loginEmail))
-            const userInfoQuerySnaphhot = await getDocs(userInfoQuery)
-            console.log('here')
+        const getUserInfo = async (loginEmail) => {
+            try{
+                console.log('loginEmail',loginEmail)
+                const userInfoQuery = query(collection(db,'userInfo'), where('user_email','==',loginEmail))
+                const userInfoQuerySnaphhot = await getDocs(userInfoQuery)
+    
+                userInfoQuerySnaphhot.forEach(doc => {
+                    console.log('in main');
+                    console.log(doc.id)
+                    setId(doc.id)
+                })
+            }catch(error){
+                console.log('redirect error', error)
+            }
+            }
+            
+        getUserInfo(mail)
+        
+    },[])
 
-            // console.log(userInfoQuerySnaphhot.data())
-            userInfoQuerySnaphhot.forEach(doc => {
-                console.log('in main');
-                console.log(doc.id)
-                setId(doc.id)
-                setLoading(false)
-            })
-            //     else{
-            //         console.log('in else')
-            //         console.log(doc.id)
-            //         return doc.id
-            //     }
-            // })
+
+    useEffect(()=>{
+        if(id){
+            console.log('id useeffect')
+            const getAllInfo = async () => {
+                    console.log('id', id)
+                    setLoading(false)
+                }
+    
+    
+            getAllInfo()
         }
 
-        getUserInfo(mail)
-
-        console.log('after getuserinfo')
-
-
-},[])
+    },[id])
 
     if(loading){
         return <h1>Loading</h1>

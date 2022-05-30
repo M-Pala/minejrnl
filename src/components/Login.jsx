@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react'
-
-import minecraftLogo from '../images/minecraftLogo.png'
-// import login_bg from '../images/login_bg.jpg'
 import { useGlobalContext } from '../context'
 import { Link } from 'react-router-dom'
 
@@ -10,13 +7,7 @@ const Login = () => {
 
 
 
-    const {signUp, setSignUp,registerEmail, setRegisterEmail,registerPass, setRegisterPass,loginEmail, setLoginEmail,loginPass, setLoginPass,registerName, setRegisterName,register,login,logout} = useGlobalContext()
-
-    const [user, setUser] = useState({})
-
-    // onAuthStateChanged(auth, (currentUser)=>{
-    //     setUser(currentUser)
-    // })
+    const {signUp, setSignUp, setRegisterEmail, setRegisterPass, registerPass, registerName, registerEmail, loginEmail, setLoginEmail, setLoginPass, setRegisterName,register,login} = useGlobalContext()
 
   return (
     <>
@@ -44,13 +35,18 @@ const Login = () => {
                         <div className='w-full flex justify-center items-baseline flex-wrap'>
                             <input className='p-3 max-h-10 w-80 rounded-md shadow-sm' type='text' placeholder='Name' onChange={(e)=>{setRegisterName(e.target.value)}}/>
                             <input className='p-3 max-h-10 w-80 rounded-md shadow-sm' type='email' placeholder='Email' onChange={(e)=>{setRegisterEmail(e.target.value)}}/>
-                            <input className='p-3 max-h-10 w-80 rounded-md shadow-sm' type='password' placeholder='Password' onChange={(e)=>{setRegisterPass(e.target.value)}}/>
+                            <input className='p-3 max-h-10 w-80 rounded-md shadow-sm' type='password' placeholder='Password (At least 6 characters)' onChange={(e)=>{setRegisterPass(e.target.value)}}/>
                         </div>
 
                         <div className='w-full flex justify-center items-center flex-wrap'>
-                            <Link to={`/login`}>
+                            
+                            {registerPass?.length < 6 || registerEmail?.length === 0 || registerName?.length === 0 ?
+                                <button type='submit' className='bg-green-300 font-bold text-lg transition-all text-white rounded-lg w-72 max-h-10 p-3 flex justify-center items-center shadow-sm hover:cursor-default' >Sign Up</button> :
+                                <Link to={`/login`}>
                                 <button className='bg-green-500 hover:bg-green-700 font-bold text-lg transition-all text-white rounded-lg w-72 max-h-10 p-3 flex justify-center items-center shadow-sm' onClick={register}>Sign Up</button>
-                            </Link>
+                                </Link>
+                            }
+                            
                         </div>
                     </> :
             
@@ -62,9 +58,9 @@ const Login = () => {
                     </div>
 
                     <div className='w-full flex justify-center items-center flex-wrap'>
-                        <Link to={`/tempRedirect/${loginEmail}`}>
+                        {/* <Link to={`/tempRedirect/${loginEmail}`}> */}
                             <button className='bg-green-500 hover:bg-green-700 font-bold text-lg transition-all text-white rounded-lg w-72 max-h-10 p-3 flex justify-center items-center shadow-sm' onClick={login}>Log in</button>
-                        </Link>
+                        {/* </Link> */}
                     </div>
                     </>}
             

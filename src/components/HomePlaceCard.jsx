@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../utils/firebaseconfig'
 import { doc,getDoc,updateDoc, arrayUnion, arrayRemove  } from 'firebase/firestore'
 import { BsBookmarkHeart, BsBookmarkHeartFill } from 'react-icons/bs'
-import { async } from '@firebase/util'
-import { useGlobalContext } from '../context'
 
 
 
@@ -33,10 +31,9 @@ const HomePlaceCard = ({place_id, user_id}) => {
                 setHomeCardCoordsY(docSnap.data().coords.y)
                 setHomeCardCoordsZ(docSnap.data().coords.z)
                 setHomeCardSavedBy(docSnap.data().savedBy)
-                setHomeCardSaved(docSnap.data().savedBy.includes(user_id))
+                setHomeCardSaved(docSnap.data().savedBy?.includes(user_id))
                 
               } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
               }
             }

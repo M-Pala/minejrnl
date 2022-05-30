@@ -19,11 +19,9 @@ const ProfilePlaceCard = ({place_id}) => {
                 setProfileCardTitle(docSnap.data().description)
                 setProfileCardServer(docSnap.data().serverLocation)
               } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
               }
             }
-            console.log(typeof place_id)
         
             getPlaceInfo(place_id)
         },[])

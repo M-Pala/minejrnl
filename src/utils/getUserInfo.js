@@ -6,7 +6,6 @@ export const getUserInfo = async (loginEmail,type) => {
     const userInfoQuerySnaphhot = await getDocs(userInfoQuery)
     console.log('here')
     userInfoQuerySnaphhot.forEach(doc => {
-        // console.log(doc.data(), doc.id)
         if(type==='main'){
             console.log('in main');
             return [doc.data(), doc.id]
@@ -18,6 +17,4 @@ export const getUserInfo = async (loginEmail,type) => {
         }
     });
 
-    // console.log(userInfoQuerySnaphhot.data(), userInfoQuerySnaphhot.id)
-    // return [userInfoQuerySnaphhot.data(), userInfoQuerySnaphhot.id]
 }

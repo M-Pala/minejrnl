@@ -17,7 +17,6 @@ const UserButton = ({user_id}) => {
         if (docSnap.exists()) {
           setUserName(docSnap?.data().user_name)
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
         }
@@ -31,7 +30,7 @@ const UserButton = ({user_id}) => {
 
   return (
 
-        <Link to={`/profile/${user_id}`}>
+        <Link to={`/searchprofile/${user_id}`}>
 
                   <p className='inline text-lg font-light px-2 py-1 ml-1 bg-green-50 border-b-green-500 border-b-2 shadow-green-200 shadow-md'> {userName} </p>
         </Link>

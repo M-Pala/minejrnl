@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context'
 
 const CreatePlace = () => {
 
-  const {isLoggedIn, setIsLoggedIn,createCordX, setCreateCordX, createCordY, setCreateCordY,createCordZ, setCreateCordZ, createDesc, setCreateDesc, createServerLoc, setCreateServerLoc, createImg, setCreateImg, uploadPlaceDetails,createUploadProgress} = useGlobalContext()
+  const {isLoggedIn,createCordX, setCreateCordX, createCordY, setCreateCordY,createCordZ, setCreateCordZ, createDesc, setCreateDesc, createServerLoc, setCreateServerLoc, createImg, setCreateImg, uploadPlaceDetails,createUploadProgress,setCreateUploadProgress} = useGlobalContext()
 
+  useEffect(()=>{
+    setCreateCordX();
+    setCreateCordY();
+    setCreateCordZ();
+    setCreateDesc();
+    setCreateServerLoc();
+    setCreateImg();
+    setCreateUploadProgress();
+
+  },[])
   if(!isLoggedIn){
     return <h1 className='mt-10 ml-2 '>Please wait.. if it takes long then Please <Link to={`/login`} className='text-blue-700 underline'>Log in</Link> </h1>
   }
