@@ -40,7 +40,7 @@ const Login = () => {
 
                         <div className='w-full flex justify-center items-center flex-wrap'>
                             
-                            {registerPass?.length > 6 && registerEmail?.length != 0 && registerName?.length != 0 ?
+                            {registerPass?.length >= 6 && registerEmail?.length != 0 && registerName?.length != 0 ?
                                 <Link to={`/login`}>
                                 <button className='bg-green-500 hover:bg-green-700 font-bold text-lg transition-all text-white rounded-lg w-72 max-h-10 p-3 flex justify-center items-center shadow-sm' onClick={register}>Sign Up</button>
                                 </Link>:

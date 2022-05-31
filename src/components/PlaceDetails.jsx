@@ -103,7 +103,7 @@ const PlaceDetails = () => {
           {/* Mobile view */}
           <div className='flex  md:hidden justify-center flex-wrap bg-white w-[98%] m-3 rounded-md shadow-sm'>
             <div className='flex justify-center'>
-                <img className='w-[100%] m-3 rounded-md' src={imageURL}/>
+                <img className='w-[95%] m-3 rounded-md' src={imageURL}/>
             </div>
             <div className='text-left w-full m-3'>
                 <h1 className='font-bold text-3xl w-full text-center mb-2'>{description}</h1>
@@ -126,7 +126,7 @@ const PlaceDetails = () => {
                  })}
 
                  </h3>
-                 <div className='flex justify-center mt-3'>
+                 <div className='flex justify-center mt-10'>
                   <button onClick={(e)=>handleSave(e)} className='flex items-center justify-between w-[60%] gap-2 px-4 py-1 rounded-lg text-white font-semibold bg-gradient-to-br from-green-400 to-green-500'>
                   {homeCardSaved ? `Saved` : `Save`}
                   {homeCardSaved ? <BsBookmarkHeartFill/>  : <BsBookmarkHeart/>}
